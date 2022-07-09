@@ -1,0 +1,76 @@
+﻿
+
+@{Layout = null;}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro</title>
+    <link rel="shortcut icon" href="/Img/icono.png">
+
+    <!--JQUERY-->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/Login.css">
+
+</head>
+
+<body id="Registrar">
+    <header class="site-header">
+        <div class="fondo">
+            <div class="modal-dialog text-center">
+                <div class="col-sm-8 main-section">
+                    <div class="modal-content">
+                            <br />
+
+                        <h2>Registro</h2>
+                            <br />
+
+                        <form class="col-12" action="/auth/registrar" method="post">
+                            <label class="mr-sm-2" for="inlineFormCustomSelect">Usuario</label>
+                            <div id="user-group">
+                                  <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                                      <div class="input-group">
+                                        <div class="input-group-prepend">
+                                          <div class="input-group-text">@@</div>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Nombre de usuario" name="username" id="Username" value="@Model.Username">
+                                        <p  id="UsuarioVacio">@Html.ValidationMessage("UsernameVacio")</p>
+                                        <p  id="UsuarioExistente">@Html.ValidationMessage("Username")</p>
+                                      </div>
+                            </div>
+                            <br />
+
+                            <label class="mr-sm-2" for="inlineFormCustomSelect">Contraseña</label>
+                            <div class="form-group" id="contrasena-group">
+                                <input type="password" class="form-control" placeholder="Contraseña" name="Password" id="Password"/>
+                                <p id="PasswordVacio">@Html.ValidationMessage("PasswordVacio")</p>
+                            </div>
+                            <br />
+
+                            <label class="mr-sm-2" for="inlineFormCustomSelect">Confirmar Contraseña</label>
+                            <div class="form-group" id="contrasena-group">
+                                <input type="password" class="form-control" placeholder="Confirmar Contraseña" name="PasswordConf" />
+                                <p id="passwordConfVacio">@Html.ValidationMessage("passwordConfVacio")</p>
+                                <p id="noCoiciden">@Html.ValidationMessage("contraseñas")</p>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
+

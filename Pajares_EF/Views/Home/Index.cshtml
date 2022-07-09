@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+<h1>Bienvenido @ViewBag.Nombre</h1>
+<h2>Mis Finanzas</h2>
+<br>
+<h3>Cuentas</h3>
+<a id="Cuenta" class="btn btn-primary" href="/home/createCuenta">Nueva Cuenta</a>
+<br>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <td>Categoria</td>
+        <td>Moneda</td>
+        <td>Saldo</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in ViewBag.Cuentas)
+    {
+        <tr>
+            <td>@item.Nombre</td>
+            <td>@item.Categorias.Tipo</td>
+            <td>@item.Monedass.Moneda</td>
+            <td>@item.Saldo</td>
+            <td>
+                <a href="/home/listTran?Id=@item.Id" class="btn btn-link">Transacciones</a>
+            </td>
+                    @if(@item.Monedass.Id == 2)
+                    {
+                      <td>
+                        <a href="/home/Total?Saldo=@item.Saldo" class="btn btn-link">Ver total en soles</a>
+                     </td>  
+                    }
+                </tr>
+    }
+    </tbody>
+</table>
+<br>
+<br>
+<h3>Transacciones</h3>
+<a id="Cuenta" class="btn btn-primary" href="/home/Transaccion">Nueva Transaccion</a>
+<br>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Fecha</th>
+        <td>Descripcion</td>
+        <td>Monto</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in ViewBag.Transacciones)
+    {
+        <tr>
+            <td>@item.Fecha</td>
+            <td>@item.Descripcion</td>
+            <td>@item.Monto</td>
+            <td>
+                <a href="/home/editTransaccion?Id=@item.Id" class="btn btn-link">Editar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+</div>

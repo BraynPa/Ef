@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h1>Nueva Cuenta</h1>
+            <form action="/home/createTransaccionIngreso" method="post">
+
+                 <div class="mb-3">
+                    <label for="IdCuenta">Cuenta</label>
+                    
+                    <select class="form-select" name="IdCuenta" id="IdCuenta">
+                        <option value="">-- Seleccione un tipo de Cuenta --</option>
+                        @foreach (var item in ViewBag.Cuentas)
+                        {
+                            if (item.Id == @Model.IdCuenta)
+                            {
+                                <option value="@item.Id" selected>@item.Nombre</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Nombre</option>
+                            }
+                        }
+                    </select>
+                    @Html.ValidationMessage("IdCuenta")
+                </div>
+                <div class="mb-3">
+                    <label for="Descripcion">Descripcion</label>
+                    <input type="text" class="form-control" Name="Descripcion" id="Descripcion" value="@Model.Descripcion">
+                    @Html.ValidationMessage("Descripcion")
+                </div>
+               
+                <div class="mb-3">
+                    <label for="Monto">Monto</label>
+                    <input class="form-control" Name="Monto" id="Monto" value="@Model.Monto">
+                </div>
+                <button class="btn btn-primary">Guardar</button>
+                <a href="/home/index" class="btn btn-link">Cancelar</a>
+            </form>
+        </div>
+    </div>
+
+</div>

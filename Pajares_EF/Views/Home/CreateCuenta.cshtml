@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h1>Nueva Cuenta</h1>
+            <form action="/home/createCuenta" method="post">
+
+                <div class="mb-3">
+                    <label for="Nombre">Nombre</label>
+                    <input type="text" class="form-control" Name="Nombre" id="Nombre" value="@Model.Nombre">
+                    @Html.ValidationMessage("Nombre")
+                </div>
+                <div class="mb-3">
+                    <label for="IdCategoria">Categoria</label>
+                    
+                    <select class="form-select" name="IdCategoria" id="IdCategoria">
+                        <option value="">-- Seleccione un tipo de categoria --</option>
+                        @foreach (var item in ViewBag.Categoria)
+                        {
+                            if (item.Id == @Model.IdCategoria)
+                            {
+                                <option value="@item.Id" selected>@item.Tipo</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Tipo</option>
+                            }
+                        }
+                    </select>
+                    @Html.ValidationMessage("IdCategoria")
+                </div>
+                <div class="mb-3">
+                    <label for="Saldo">Saldo</label>
+                    <input class="form-control" Name="Saldo" id="Saldo" value="@Model.Saldo">
+                </div>
+                 <div class="mb-3">
+                    <label for="IdMoneda">Moneda</label>
+                    
+                    <select class="form-select" name="IdMoneda" id="IdMoneda">
+                        <option value="">-- Seleccione un tipo de Moneda --</option>
+                        @foreach (var item in ViewBag.MMoneda)
+                        {
+                            if (item.Id == @Model.IdMoneda)
+                            {
+                                <option value="@item.Id" selected>@item.Moneda</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Moneda</option>
+                            }
+                        }
+                    </select>
+                    
+                </div>
+               
+                <button class="btn btn-primary">Guardar</button>
+                <a href="/home/index" class="btn btn-link">Cancelar</a>
+            </form>
+        </div>
+    </div>
+
+</div>
